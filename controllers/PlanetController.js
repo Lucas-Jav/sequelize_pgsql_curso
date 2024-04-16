@@ -16,5 +16,30 @@ module.exports = {
         const planets = await Planet.findAll();
 
         return res.json(planets);
+    },
+
+    async put(req, res) {
+        const {name, size, position} = req.body;
+
+        await Planet.update(
+            {name, size, position},
+            {
+                where: {
+                    id: req.params.id
+                }
+            }
+        );
+
+        return res.send("Planeta atualizado com sucesso!");
+    },
+
+    async delete(req, res) {
+        await Planet.destroy({
+            where: {
+                id: req.params.id
+            }
+        });
+
+        return res.send("Planeta excluído com sucesso!");
     }
 }
