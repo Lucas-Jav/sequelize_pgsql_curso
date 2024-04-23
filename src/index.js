@@ -1,6 +1,8 @@
 const express = require("express");
 const routes = require("./routes.js");
 
+require("../config/associations.js");
+
 const app = express();
 
 app.use(express.json());
